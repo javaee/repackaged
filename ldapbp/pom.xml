@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>ldapbp</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     
     <name>ldapbp repackaged as an OSGI bundle</name>
     <description>&gt;Ldap Booster Pack repackaged as an OSGi bundle</description>
@@ -70,9 +70,9 @@
     </licenses>
     
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/ldapbp-1.0</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/ldapbp-1.0</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/tags/ldapbp-1.0</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ldapbp</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ldapbp</developerConnection>
+        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ldapbp</url>
     </scm>
     
     <mailingLists>
