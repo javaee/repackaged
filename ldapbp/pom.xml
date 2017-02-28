@@ -50,16 +50,10 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>ldapbp</artifactId>
-    <!--
-        THE VERSION SHOULD BE LDAPBP's version !!!
-        
-        if there is a need for an incremental release, use a qualifier (e.g. 2.0.4-1)
-        under trunk/external/repackaged, version are SNAPSHOT version of the next release!
-    -->
     <version>1.0-SNAPSHOT</version>
     
-    <name>LDAPBP repackaged as an OSGI bundle</name>
-    <description>LDAP Booster Pack repackaged as an OSGi bundle</description>
+    <name>ldapbp repackaged as an OSGI bundle</name>
+    <description>>Ldap Booster Pack repackaged as an OSGi bundle</description>
     
     <properties>
         <ldapbp.version>1.0</ldapbp.version>
