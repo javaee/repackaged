@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>jmxremote_optional</artifactId>
-    <version>1.0-b01-ea</version>
+    <version>1.0-b02-ea-SNAPSHOT</version>
     
     <name>jmxremote_optional repackaged as an OSGI bundle</name>
     
@@ -69,9 +69,9 @@
     </licenses>
     
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/jmxremote_optional-1.0-b01-ea</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/jmxremote_optional-1.0-b01-ea</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/tags/jmxremote_optional-1.0-b01-ea</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/jmxremote_optional</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/jmxremote_optional</developerConnection>
+        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/jmxremote_optional</url>
     </scm>
     
     <mailingLists>
