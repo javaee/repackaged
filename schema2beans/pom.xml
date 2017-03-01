@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>schema2beans</artifactId>
-    <version>6.5-SNAPSHOT</version>
+    <version>6.5</version>
     
     <name>Schema2beans repackaged as an OSGI bundle</name>
     
@@ -83,9 +83,9 @@
     </licenses>
     
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/schema2beans</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/schema2beans</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/schema2beans</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/schema2beans-6.5</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/schema2beans-6.5</developerConnection>
+        <url>https://svn.java.net/svn/glassfish~svn/tags/schema2beans-6.5</url>
     </scm>
     
     <mailingLists>
