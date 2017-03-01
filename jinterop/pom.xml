@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>j-interop</artifactId>
-    <version>2.0.4-SNAPSHOT</version>
+    <version>2.0.4</version>
     
     <name>J-Interop repackaged as an OSGI bundle</name>
     
@@ -72,9 +72,9 @@
     </licenses>
     
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/jinterop</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/jinterop</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/jinterop</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/j-interop-2.0.4</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/j-interop-2.0.4</developerConnection>
+        <url>https://svn.java.net/svn/glassfish~svn/tags/j-interop-2.0.4</url>
     </scm>
     
     <mailingLists>
