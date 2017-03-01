@@ -3,7 +3,7 @@
 
     DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
 
     The contents of this file are subject to the terms of either the GNU
     General Public License Version 2 only ("GPL") or the Common Development
@@ -50,12 +50,6 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>dbschema</artifactId>
-    <!--
-        THE VERSION SHOULD BE DBSCHEMA's version !!!
-        
-        if there is a need for an incremental release, use a qualifier (e.g. 2.0.4-1)
-        under trunk/external/repackaged, version are SNAPSHOT version of the next release!
-    -->
     <version>6.5-SNAPSHOT</version>
     
     <name>DBschema repackaged as an OSGI bundle</name>
@@ -132,7 +126,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.0.1</version>
+                    <version>1.4.3</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -148,6 +142,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.9.1</version>
+                    <configuration>
+                        <additionalparam>${javadoc.options}</additionalparam>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -185,10 +182,6 @@
                         <Embed-Dependency>
                             org-netbeans-modules-dbschema.*;inline=true
                         </Embed-Dependency>
-                        <!-- we are not using _exportcontents, because that
-                             does not generate version in Export-Package.
-                             Sahoo to investigate further.
-                        -->
                         <!-- We set a mandatory attribute for these packages, because we don't
                              want them to be visible to just anyone. An importer must specify
                              the mandatory attribute for it to be able to import. See 
@@ -204,39 +197,30 @@
                         <Export-Package> org.netbeans.modules.dbschema.*;version=${dbschema.osgi.version}; password="GlassFish"; mandatory:=password</Export-Package>
                         <Import-Package>
                               org.openide.*;resolution:=optional,
-                              org.netbeans.lib.ddl.impl.*;resolution:=optional,
-                              org.netbeans.spi.*;resolution:=optional,
-                              org.netbeans.api.*;resolution:=optional,*
+                              !org.jdesktop.layout,
+                              !javax.swing.*,
+                              !javax.accessibility,
+                              !java.awt.*,*
                         </Import-Package>
-                        <Private-Package>!*</Private-Package>
                     </instructions>
-                    <!-- Maven uses the output directory (target/classes)
-                    rather than the final bundle, when compiling against
-                    projects in the same reactor (ie. the same build).
-                    Since this jar comprises of classes that come from
-                    some other jar and other modules depend on this
-                    artifact, we need to unpack.
-                    -->
-                    <unpackBundle>true</unpackBundle>
                 </configuration>
                 <executions>
                     <execution>
                         <id>osgi-bundle</id>
-                        <phase>package</phase>
+                        <phase>compile</phase>
                         <goals>
-                            <goal>bundle</goal>
+                            <goal>manifest</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
-            <!-- 
-                unpack and attach the sources.jar(s) available
-                This allows us to generate proper sources.jar and javadoc.jar
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
+                    <!--
+                        We unpack and attach source to generate proper sources.jar and javadoc.jar 
+                    -->
                     <execution>
                         <id>add-source-step1</id>
                         <goals>
@@ -253,6 +237,19 @@
                                     <outputDirectory>${project.build.directory}/sources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-dependencies</id>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <excludeTransitive>true</excludeTransitive>
+                            <includeTypes>jar</includeTypes>
+                            <includes>org/openide/nodes/*,org/netbeans/modules/dbschema/**</includes>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -298,7 +295,7 @@
                     <execution>
                         <id>default-jar</id>
                         <configuration>
-                            <skipIfEmpty>true</skipIfEmpty>
+                            <useDefaultManifestFile>true</useDefaultManifestFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -312,52 +309,24 @@
             <artifactId>org-netbeans-modules-dbschema</artifactId>
             <version>${dbschema.version}</version>
             <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-netbeans-api-progress</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-netbeans-modules-projectapi</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-netbeans-modules-projectuiapi</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-actions</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-awt</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-dialogs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-filesystems</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-loaders</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-nodes</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-util</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.api</groupId>
-                    <artifactId>org-openide-windows</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-nodes</artifactId>
+            <version>${dbschema.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>javadoc-jdk8+</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <javadoc.options>-Xdoclint:none</javadoc.options>
+            </properties>
+        </profile>
+    </profiles>
 </project>
