@@ -3,7 +3,7 @@
 
     DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
 
     The contents of this file are subject to the terms of either the GNU
     General Public License Version 2 only ("GPL") or the Common Development
@@ -50,12 +50,6 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>schema2beans</artifactId>
-    <!--
-        THE VERSION SHOULD BE SCHEMA2BEANS's version !!!
-        
-        if there is a need for an incremental release, use a qualifier (e.g. 2.0.4-1)
-        under trunk/external/repackaged, version are SNAPSHOT version of the next release!
-    -->
     <version>6.5-SNAPSHOT</version>
     
     <name>Schema2beans repackaged as an OSGI bundle</name>
@@ -132,7 +126,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.0.1</version>
+                    <version>2.3.4</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -148,6 +142,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.9.1</version>
+                    <configuration>
+                        <additionalparam>${javadoc.options}</additionalparam>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -315,4 +312,16 @@
             See https://java.net/jira/browse/GLASSFISH-20835
         -->
     </dependencies>
+    <profiles>
+        <profile>
+            <id>javadoc-jdk8+</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <javadoc.options>-Xdoclint:none</javadoc.options>
+            </properties>
+        </profile>
+    </profiles>
 </project>
