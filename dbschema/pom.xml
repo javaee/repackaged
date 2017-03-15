@@ -40,20 +40,18 @@
     holder.
 
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.java</groupId>
-	<artifactId>jvnet-parent</artifactId>
+        <artifactId>jvnet-parent</artifactId>
         <version>4</version>
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>dbschema</artifactId>
-    <version>6.6-SNAPSHOT</version>
-    
+    <version>6.5</version>
     <name>DBschema repackaged as an OSGI bundle</name>
-    
+
     <properties>
         <dbschema.version>RELEASE65</dbschema.version>
         <dbschema.osgi.version>6.5</dbschema.osgi.version>
@@ -72,7 +70,7 @@
             </snapshots>
         </repository>
     </repositories>
-    
+
     <licenses>
         <license>
             <name>CDDL + GPLv2 with classpath exception</name>
@@ -81,13 +79,13 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
-    
+
     <scm>
         <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/dbschema</connection>
         <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/dbschema</developerConnection>
         <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/dbschema</url>
     </scm>
-    
+
     <mailingLists>
         <mailingList>
             <name>dev</name>
@@ -114,11 +112,11 @@
             <archive>http://java.net/projects/glassfish/lists/commits/archive</archive>
         </mailingList>
     </mailingLists>
-    
+
     <issueManagement>
         <system>IssueTracker</system>
         <url>http://java.net/jira/browse/GLASSFISH</url>
-    </issueManagement>            
+    </issueManagement>
 
     <build>
         <pluginManagement>
@@ -179,29 +177,17 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                     <instructions>
-                        <Embed-Dependency>
-                            org-netbeans-modules-dbschema.*;inline=true
-                        </Embed-Dependency>
-                        <!-- We set a mandatory attribute for these packages, because we don't
-                             want them to be visible to just anyone. An importer must specify
-                             the mandatory attribute for it to be able to import. See 
-                             section #3.6.5 of OSGi R4 spec.
-                             Why is this required?
-                             See https://glassfish.dev.java.net/issues/show_bug.cgi?id=5385
-                             By doing this, we allow user have any version of apache-commons lib
-                             in their application class loader hierarchy. They don't even have to
-                             set delegation=false in sun-web.xml! This is the true advantage of
-                             using OSGi. Sahoo.
-                        -->
-                        <!-- Export org.netbeans.modules.dbschema.*. -->
+                        <Embed-Dependency>org-netbeans-modules-dbschema.*;inline=true</Embed-Dependency>
                         <Export-Package> org.netbeans.modules.dbschema.*;version=${dbschema.osgi.version}; password="GlassFish"; mandatory:=password</Export-Package>
                         <Import-Package>
                               org.openide.*;resolution:=optional,
+                              org.netbeans.*;resolution:=optional,
                               !org.jdesktop.layout,
                               !javax.swing.*,
                               !javax.accessibility,
                               !java.awt.*,*
                         </Import-Package>
+                        <Private-Package>!*</Private-Package>
                     </instructions>
                 </configuration>
                 <executions>
@@ -302,7 +288,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.netbeans.modules</groupId>
