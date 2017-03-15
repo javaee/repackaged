@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>ant</artifactId>
-    <version>1.8.3-SNAPSHOT</version>
+    <version>1.8.3</version>
     <name>Ant repackaged as an OSGI bundle</name>
 
     <properties>
@@ -68,9 +68,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ant</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ant</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ant</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/ant-1.8.3</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/ant-1.8.3</developerConnection>
+        <url>https://svn.java.net/svn/glassfish~svn/tags/ant-1.8.3</url>
     </scm>
 
     <mailingLists>
