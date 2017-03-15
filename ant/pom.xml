@@ -3,7 +3,7 @@
 
     DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
 
     The contents of this file are subject to the terms of either the GNU
     General Public License Version 2 only ("GPL") or the Common Development
@@ -50,21 +50,14 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>ant</artifactId>
-    <!--
-        THE VERSION SHOULD BE ANT's version !!!
-        
-        if there is a need for an incremental release, use a qualifier (e.g. 2.0.4-1)
-        under trunk/external/repackaged, version are SNAPSHOT version of the next release!
-    -->
     <version>1.8.3-SNAPSHOT</version>
-    
     <name>Ant repackaged as an OSGI bundle</name>
-    
+
     <properties>
         <ant.version>1.8.3</ant.version>
         <release.arguments />
     </properties>
-    
+
     <licenses>
         <license>
             <name>CDDL + GPLv2 with classpath exception</name>
@@ -73,13 +66,13 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
-    
+
     <scm>
         <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ant</connection>
         <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ant</developerConnection>
         <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/ant</url>
     </scm>
-    
+
     <mailingLists>
         <mailingList>
             <name>dev</name>
@@ -106,11 +99,11 @@
             <archive>http://java.net/projects/glassfish/lists/commits/archive</archive>
         </mailingList>
     </mailingLists>
-    
+
     <issueManagement>
         <system>IssueTracker</system>
         <url>http://java.net/jira/browse/GLASSFISH</url>
-    </issueManagement>            
+    </issueManagement>
 
     <build>
         <pluginManagement>
@@ -134,6 +127,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.9.1</version>
+                    <configuration>
+                        <additionalparam>${javadoc.options}</additionalparam>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -172,23 +168,7 @@
                         <Embed-Dependency>
                             *;artifactId=ant|ant-launcher;inline=true
                         </Embed-Dependency>
-                        <!-- Export-Package is not needed, as we are using _exportcontents
-                        <Export-Package>org.apache.tools.ant.*</Export-Package>
-                        -->
-                        <!-- Package everything from the embedded jar in the final bundle
-                        and export them as well.
-                        -->
                         <_exportcontents>*</_exportcontents>
-                        <!-- For whatever reason bnd is generating
-                        Import-Package headers for following packages:
-                        org.apache.tools.ant.util.java15,
-                        org.apache.tools.ant.taskdefs.optional,
-                        org.apache.env.
-                        When I run my verifier, it does not show any dependency
-                        from ant classes on these packages. So, excluding them
-                        from dependencies.
-                        TODO(Sahoo): To find out why bnd is generating such dependencies.
-                        -->
                         <Import-Package>
                             !images,
                             !org.apache.tools.ant.util.java15,
@@ -196,18 +176,8 @@
                             !org.apache.env,
                             *
                         </Import-Package>
-                        <!-- !* matches with nothing, so no other class will be included in this bundle,
-                        other than what is specified above -->
                         <Private-Package>!*</Private-Package>
                     </instructions>
-                    <!-- Maven uses the output directory (target/classes)
-                    rather than the final bundle, when compiling against
-                    projects in the same reactor (ie. the same build).
-                    Since this jar comprises of classes that come from
-                    some other jars and those other jars are marked as
-                    optional, maven won't add them to classpath when
-                    other modules depend on this artifact, so we need to unpack.
-                    -->
                     <unpackBundle>true</unpackBundle>
                 </configuration>
                 <executions>
@@ -303,7 +273,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.apache.ant</groupId>
@@ -318,4 +288,17 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>javadoc-jdk8+</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <javadoc.options>-Xdoclint:none</javadoc.options>
+            </properties>
+        </profile>
+    </profiles>
 </project>
