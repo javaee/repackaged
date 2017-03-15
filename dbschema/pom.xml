@@ -49,7 +49,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>dbschema</artifactId>
-    <version>6.5</version>
+    <version>6.6-SNAPSHOT</version>
     <name>DBschema repackaged as an OSGI bundle</name>
 
     <properties>
@@ -81,9 +81,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/dbschema-6.5</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/dbschema-6.5</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/tags/dbschema-6.5</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/dbschema</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/dbschema</developerConnection>
+        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/dbschema</url>
     </scm>
 
     <mailingLists>
