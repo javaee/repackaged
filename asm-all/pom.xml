@@ -3,7 +3,7 @@
 
     DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2014-2017 Oracle and/or its affiliates. All rights reserved.
 
     The contents of this file are subject to the terms of either the GNU
     General Public License Version 2 only ("GPL") or the Common Development
@@ -56,12 +56,12 @@
         If there is a need for an incremental release, use a qualifier (e.g. 2.0.4-1)
         under trunk/external/repackaged, versions are SNAPSHOT version of the next release!
     -->
-    <version>3.3.1-SNAPSHOT</version>
+    <version>6.0_ALPHA-SNAPSHOT</version>
     <name>asm-all</name>
     <description>org.objectweb.asm.all version ${asm.version} repackaged as an OSGi bundle</description>
     
     <properties>
-        <asm.version>3.3</asm.version>
+        <asm.version>6.0_ALPHA</asm.version>
         <release.arguments />
     </properties>
     
@@ -201,13 +201,13 @@
                             <artifactItems>
                                <artifactItem>
                                     <groupId>asm</groupId>
-                                    <artifactId>asm-debug-all</artifactId>
+                                    <artifactId>asm-all</artifactId>
                                     <version>${asm.version}</version>
                                     <outputDirectory>${project.build.directory}/classes</outputDirectory>
                                 </artifactItem>                                
                                 <artifactItem>
                                     <groupId>asm</groupId>
-                                    <artifactId>asm-debug-all</artifactId>
+                                    <artifactId>asm-all</artifactId>
                                     <version>${asm.version}</version>
                                     <classifier>sources</classifier>
                                     <outputDirectory>${project.build.directory}/sources</outputDirectory>
@@ -263,7 +263,7 @@
     <dependencies>
         <dependency>
             <groupId>asm</groupId>
-            <artifactId>asm-debug-all</artifactId>
+            <artifactId>asm-all</artifactId>
             <version>${asm.version}</version>
             <optional>true</optional>
         </dependency>
