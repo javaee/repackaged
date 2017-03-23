@@ -200,13 +200,13 @@
                         <configuration>
                             <artifactItems>
                                <artifactItem>
-                                    <groupId>asm</groupId>
+                                    <groupId>org.ow2.asm</groupId>
                                     <artifactId>asm-all</artifactId>
                                     <version>${asm.version}</version>
                                     <outputDirectory>${project.build.directory}/classes</outputDirectory>
                                 </artifactItem>                                
                                 <artifactItem>
-                                    <groupId>asm</groupId>
+                                    <groupId>org.ow2.asm</groupId>
                                     <artifactId>asm-all</artifactId>
                                     <version>${asm.version}</version>
                                     <classifier>sources</classifier>
@@ -262,7 +262,7 @@
     
     <dependencies>
         <dependency>
-            <groupId>asm</groupId>
+            <groupId>org.ow2.asm</groupId>
             <artifactId>asm-all</artifactId>
             <version>${asm.version}</version>
             <optional>true</optional>
