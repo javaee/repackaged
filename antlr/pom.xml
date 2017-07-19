@@ -56,6 +56,8 @@
     
     <properties>
         <antlr.version>2.7.7</antlr.version>
+        <antlr.source.url>http://www.antlr2.org/download/antlr-${antlr.version}.tar.gz</antlr.source.url>
+        <antlr.source.artifact>antlr-${antlr.version}</antlr.source.artifact>
         <release.arguments />
     </properties>
     
@@ -178,10 +180,36 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--
+                Download the source distribution.
+            -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <target>
+                                <get src="${antlr.source.url}" dest="${project.build.directory}"/>
+                                <gunzip src="${project.build.directory}/${antlr.source.artifact}.tar.gz" dest="${project.build.directory}"/>
+                                <untar src="${project.build.directory}/${antlr.source.artifact}.tar" dest="${project.build.directory}/sources">
+                                    <patternset>
+                                        <include name="antlr"/>
+                                    </patternset>
+                                </untar>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- 
                 unpack and attach the sources.jar available
                 This allows us to generate proper sources.jar and javadoc.jar
-            -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -205,7 +233,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
