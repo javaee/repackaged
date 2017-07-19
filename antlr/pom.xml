@@ -206,34 +206,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 
-                unpack and attach the sources.jar available
-                This allows us to generate proper sources.jar and javadoc.jar
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-source-step1</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>antlr</groupId>
-                                    <artifactId>antlr</artifactId>
-                                    <version>${antlr.version}</version>
-                                    <classifier>sources</classifier>
-                                    <outputDirectory>${project.build.directory}/sources</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
