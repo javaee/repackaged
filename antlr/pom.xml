@@ -55,7 +55,9 @@
     <name>Antlr, repackaged as an OSGI bundle</name>
     
     <properties>
-        <antlr.version>2.7.6</antlr.version>
+        <antlr.version>2.7.7</antlr.version>
+        <antlr.source.url>http://www.antlr2.org/download/antlr-${antlr.version}.tar.gz</antlr.source.url>
+        <antlr.source.artifact>antlr-${antlr.version}</antlr.source.artifact>
         <release.arguments />
     </properties>
     
@@ -69,41 +71,14 @@
     </licenses>
     
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/antlr</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/antlr</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/antlr</url>
+        <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
+        <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
+        <url>https://github.com/javaee/repackaged.git</url>
     </scm>
-    
-    <mailingLists>
-        <mailingList>
-            <name>dev</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>dev@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/dev/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>users</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>users@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/users/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>issues</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>issues@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/issues/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>commits</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>commits@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/commits/archive</archive>
-        </mailingList>
-    </mailingLists>
-    
+       
     <issueManagement>
         <system>IssueTracker</system>
-        <url>http://java.net/jira/browse/GLASSFISH</url>
+        <url>https://github.com/javaee/repackaged/issues</url>
     </issueManagement>            
 
     <build>
@@ -205,31 +180,29 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 
-                unpack and attach the sources.jar available
-                This allows us to generate proper sources.jar and javadoc.jar
+            <!--
+                Download the source distribution.
             -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
                 <executions>
                     <execution>
-                        <id>add-source-step1</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>antlr</groupId>
-                                    <artifactId>antlr</artifactId>
-                                    <version>${antlr.version}</version>
-                                    <classifier>sources</classifier>
-                                    <outputDirectory>${project.build.directory}/sources</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
+                            <target>
+                                <get src="${antlr.source.url}" dest="${project.build.directory}"/>
+                                <gunzip src="${project.build.directory}/${antlr.source.artifact}.tar.gz" dest="${project.build.directory}"/>
+                                <untar src="${project.build.directory}/${antlr.source.artifact}.tar" dest="${project.build.directory}/sources">
+                                    <patternset>
+                                        <include name="antlr"/>
+                                    </patternset>
+                                </untar>
+                            </target>
                         </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
