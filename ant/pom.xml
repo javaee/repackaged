@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>ant</artifactId>
-    <version>1.10.1-SNAPSHOT</version>
+    <version>1.10.1</version>
     <name>Ant repackaged as an OSGI bundle</name>
 
     <properties>
@@ -71,7 +71,8 @@
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
         <url>https://github.com/javaee/repackaged.git</url>
-    </scm>
+      <tag>ant-1.10.1</tag>
+  </scm>
 
 
     <issueManagement>
