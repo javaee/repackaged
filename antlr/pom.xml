@@ -244,7 +244,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <configuration>
-                    <attach>false</attach>
+                    <includes>
+                        <fileset>
+                            <directory>${project.build.directory}/sources</directory>
+                        </fileset>
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>
