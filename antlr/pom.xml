@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>antlr</artifactId>
-    <version>2.7.8-SNAPSHOT</version>
+    <version>2.7.7-SNAPSHOT</version>
     
     <name>Antlr, repackaged as an OSGI bundle</name>
     
@@ -73,8 +73,7 @@
     <scm>
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
-        <url>https://github.com/javaee/repackaged.git</url>
-      <tag>HEAD</tag>
+        <url>https://github.com/javaee/repackaged.git</url>      
   </scm>
        
     <issueManagement>
