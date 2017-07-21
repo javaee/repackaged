@@ -45,22 +45,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.java</groupId>
-	<artifactId>jvnet-parent</artifactId>
+        <artifactId>jvnet-parent</artifactId>
         <version>5</version>
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>antlr</artifactId>
-    <version>2.7.8-SNAPSHOT</version>
-    
+    <version>2.7.7-SNAPSHOT</version>
+
     <name>Antlr, repackaged as an OSGI bundle</name>
-    
+
     <properties>
         <antlr.version>2.7.7</antlr.version>
         <antlr.source.url>http://www.antlr2.org/download/antlr-${antlr.version}.tar.gz</antlr.source.url>
         <antlr.source.artifact>antlr-${antlr.version}</antlr.source.artifact>
         <release.arguments />
     </properties>
-    
+
     <licenses>
         <license>
             <name>CDDL + GPLv2 with classpath exception</name>
@@ -69,18 +69,17 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
-    
+
     <scm>
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
-        <url>https://github.com/javaee/repackaged.git</url>      
-    <tag>HEAD</tag>
-  </scm>
-       
+        <url>https://github.com/javaee/repackaged.git</url>        
+    </scm>
+
     <issueManagement>
         <system>IssueTracker</system>
         <url>https://github.com/javaee/repackaged/issues</url>
-    </issueManagement>            
+    </issueManagement>
 
     <build>
         <pluginManagement>
@@ -132,7 +131,7 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>2.4</version>
-                </plugin>                
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -193,10 +192,9 @@
                         <configuration>
                             <target>
                                 <get src="${antlr.source.url}" dest="${project.build.directory}" />
-                                <gunzip src="${project.build.directory}/${antlr.source.artifact}.tar.gz" dest="${project.build.directory}" />
-                                <untar src="${project.build.directory}/${antlr.source.artifact}.tar" dest="${project.build.directory}/sources">
+                                <untar src="${project.build.directory}/${antlr.source.artifact}.tar.gz" dest="${project.build.directory}/sources" compression="gzip">
                                     <patternset>
-                                        <include name="antlr" />
+                                        <include name="*/antlr/**" />
                                     </patternset>
                                 </untar>
                             </target>
@@ -219,7 +217,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.directory}/sources</source>
+                                <source>${project.build.directory}/sources/${antlr.source.artifact}</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -240,14 +238,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <includes>${project.build.directory}/sources</includes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
