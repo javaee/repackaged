@@ -45,7 +45,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.java</groupId>
-	<artifactId>jvnet-parent</artifactId>
+        <artifactId>jvnet-parent</artifactId>
         <version>4</version>
     </parent>
     <groupId>org.glassfish.external</groupId>
@@ -55,7 +55,7 @@
     <name>trilead-ssh2 repackaged as an OSGI bundle</name>
     
     <properties>
-        <trilead-ssh2.version>build212-hudson-6</trilead-ssh2.version>
+        <trilead-ssh2.version>build-217-jenkins-11</trilead-ssh2.version>
         <release.arguments />
     </properties>
     
@@ -69,41 +69,14 @@
     </licenses>
     
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/trilead-ssh2</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/trilead-ssh2</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/trunk/external/repackaged/trilead-ssh2</url>
+        <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
+        <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
+        <url>https://github.com/javaee/repackaged.git</url>
     </scm>
-    
-    <mailingLists>
-        <mailingList>
-            <name>dev</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>dev@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/dev/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>users</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>users@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/users/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>issues</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>issues@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/issues/archive</archive>
-        </mailingList>
-        <mailingList>
-            <name>commits</name>
-            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
-            <post>commits@glassfish.java.net</post>
-            <archive>http://java.net/projects/glassfish/lists/commits/archive</archive>
-        </mailingList>
-    </mailingLists>
-    
+
     <issueManagement>
         <system>IssueTracker</system>
-        <url>http://java.net/jira/browse/GLASSFISH</url>
+        <url>https://github.com/javaee/repackaged/issues</url>
     </issueManagement>            
 
     <build>
@@ -214,7 +187,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.jvnet.hudson</groupId>
+                                    <groupId>org.jenkins-ci</groupId>
                                     <artifactId>trilead-ssh2</artifactId>
                                     <version>${trilead-ssh2.version}</version>
                                     <classifier>sources</classifier>
@@ -274,13 +247,25 @@
             </plugin>
         </plugins>
     </build>
-    
+
+    <repositories>
+        <repository>
+            <id>Jenkins repo</id>
+            <url>http://repo.jenkins-ci.org/releases</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
-            <groupId>org.jvnet.hudson</groupId>
+            <groupId>org.jenkins-ci</groupId>
             <artifactId>trilead-ssh2</artifactId>
             <optional>true</optional>
             <version>${trilead-ssh2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.i2p.crypto</groupId>
+            <artifactId>eddsa</artifactId>
+            <version>0.2.0</version>
         </dependency>
     </dependencies>
 
