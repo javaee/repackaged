@@ -56,6 +56,7 @@
     
     <properties>
         <libpam4j.version>1.8</libpam4j.version>
+        <jna.version>4.4.0</jna.version>
         <release.arguments />
     </properties>
     
@@ -269,6 +270,11 @@
             <version>${libpam4j.version}</version>
             <optional>true</optional>
         </dependency>
+       <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>${jna.version}</version>
+       </dependency>
     </dependencies>
     <profiles>
         <profile>
