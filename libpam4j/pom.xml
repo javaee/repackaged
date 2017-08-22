@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>libpam4j</artifactId>
-    <version>1.9-SNAPSHOT</version>
+    <version>1.10-SNAPSHOT</version>
     
     <name>libpam4j repackaged as an OSGI bundle</name>
     
