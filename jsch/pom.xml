@@ -45,18 +45,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.java</groupId>
-        <artifactId>jvnet-parent</artifactId>
+	<artifactId>jvnet-parent</artifactId>
         <version>5</version>
     </parent>
     <groupId>org.glassfish.external</groupId>
-    <artifactId>trilead-ssh2</artifactId>
-    <version>2.1.3-SNAPSHOT</version>
+    <artifactId>jsch</artifactId>
+    <version>0.1.55-SNAPSHOT</version>
     
-    <name>trilead-ssh2 repackaged as an OSGI bundle</name>
+    <name>jsch repackaged as an OSGI bundle</name>
     
     <properties>
-        <trilead-ssh2.version>build-217-jenkins-11</trilead-ssh2.version>
-        <eddsa.version>0.2.0</eddsa.version>
+        <jsch.version>0.1.54</jsch.version>
         <release.arguments />
     </properties>
     
@@ -73,12 +72,13 @@
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
         <url>https://github.com/javaee/repackaged.git</url>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
 
     <issueManagement>
         <system>IssueTracker</system>
         <url>https://github.com/javaee/repackaged/issues</url>
-    </issueManagement>            
+    </issueManagement>
 
     <build>
         <pluginManagement>
@@ -145,11 +145,9 @@
                         <!-- Export everything from the embedded jar 
                              in the final bundle 
                         -->
-                        <_exportcontents>*</_exportcontents>
                         <!-- Exclude unnecessary imports -->
-                        <Import-Package>com.sun.jndi.ldap,!com.sun.jndi.toolkit.corba,!com.sun.security.sasl.preview,!com.sun.security.sasl.util,*</Import-Package>
-                        <!-- !* matches with nothing, so no other class will be included in this bundle,
-                         other than what is specified above -->
+                        <Export-Package>*;version=${jsch.version}</Export-Package>
+                        <Import-Package>!com.jcraft.jzlib,*</Import-Package>
                         <Private-Package>!*</Private-Package>
                     </instructions>
                     <!-- Maven uses the output directory (target/classes)
@@ -188,9 +186,9 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.jenkins-ci</groupId>
-                                    <artifactId>trilead-ssh2</artifactId>
-                                    <version>${trilead-ssh2.version}</version>
+                                    <groupId>com.jcraft</groupId>
+                                    <artifactId>jsch</artifactId>
+                                    <version>${jsch.version}</version>
                                     <classifier>sources</classifier>
                                     <outputDirectory>${project.build.directory}/sources</outputDirectory>
                                 </artifactItem>
@@ -216,11 +214,10 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>            
+            </plugin>
             <!-- 
-                We don't use sources to build the jar from scratch, but only
-                for generating proper sources.jar and javadoc.jar
-                We disable default-compile, to make sure we don't compile sources
+                We unpack and attach source before compile happens</plugins>
+                We disable default-compile, to make sure we don't recompile sources
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -265,28 +262,14 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>Jenkins repo</id>
-            <url>http://repo.jenkins-ci.org/releases</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
-            <groupId>org.jenkins-ci</groupId>
-            <artifactId>trilead-ssh2</artifactId>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>${jsch.version}</version>
             <optional>true</optional>
-            <version>${trilead-ssh2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.i2p.crypto</groupId>
-            <artifactId>eddsa</artifactId>
-            <version>${eddsa.version}</version>
         </dependency>
     </dependencies>
-
     <profiles>
         <profile>
             <id>javadoc-jdk8+</id>
