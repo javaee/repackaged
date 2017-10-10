@@ -72,7 +72,6 @@
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
         <url>https://github.com/javaee/repackaged.git</url>
-      <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
