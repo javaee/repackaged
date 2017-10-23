@@ -60,7 +60,7 @@
 #        <id>release</id>
 #        <properties>
 #          <user.name>jvnet_id</user.name>
-#          <release.arguments>-Dhttps.proxyHost=www-proxy.us.oracle.com -Dhttps.proxyPort=80 -Dgpg.passphrase=glassfish</release.arguments>
+#          <release.arguments>-Dhttps.proxyHost=<proxy-server> -Dhttps.proxyPort=80 -Dgpg.passphrase=glassfish</release.arguments>
 #        </properties>
 #        <activation>
 #          <activeByDefault>false</activeByDefault>
@@ -76,7 +76,6 @@
 
 # More information:
 # https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt
-# http://aseng-wiki.us.oracle.com/asengwiki/display/GlassFish/Migrating+Maven+deployment+to+maven.java.net
 
 # Note: the release process may use ssh key to interact with the SCM. If so, it will use your user.name as define in the release profile of your settings.xml.
 # Be sure to have your ssh public key exported in your java.net account.
