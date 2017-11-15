@@ -54,7 +54,7 @@
     <name>DBschema repackaged as an OSGI bundle</name>
 
     <properties>
-        <dbschema.version>RELEASE82</dbschema.version>
+        <dbschema.version>RELEASE712</dbschema.version>
         <dbschema.osgi.version>6.5</dbschema.osgi.version>
         <release.arguments />
     </properties>
