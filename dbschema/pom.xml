@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>dbschema</artifactId>
-    <version>6.6</version>
+    <version>6.7-SNAPSHOT</version>
     <name>DBschema repackaged as an OSGI bundle</name>
 
     <properties>
@@ -85,7 +85,7 @@
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
         <url>https://github.com/javaee/repackaged.git</url>
-      <tag>dbschema-6.6</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
