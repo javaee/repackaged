@@ -50,7 +50,7 @@
     </parent>
     <groupId>org.glassfish.external</groupId>
     <artifactId>schema2beans</artifactId>
-    <version>6.6-SNAPSHOT</version>
+    <version>6.6</version>
     
     <name>Schema2beans repackaged as an OSGI bundle</name>
     
@@ -86,7 +86,8 @@
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
         <url>https://github.com/javaee/repackaged.git</url>
-    </scm>
+      <tag>schema2beans-6.6</tag>
+  </scm>
 
     <issueManagement>
         <system>IssueTracker</system>
