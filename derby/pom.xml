@@ -53,7 +53,7 @@
     <groupId>org.glassfish.external</groupId>
     <artifactId>derby</artifactId>
     <name>Apache Derby repackaged</name>
-    <version>10.13.1.1-SNAPSHOT</version>
+    <version>10.13.1.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -74,7 +74,8 @@
         <connection>scm:git:git@github.com:javaee/repackaged.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/repackaged.git</developerConnection>
         <url>https://github.com/javaee/repackaged.git</url>
-    </scm>
+      <tag>10.13.1.1</tag>
+  </scm>
 
     <build>
         <plugins>
@@ -92,9 +93,7 @@
                         <configuration>
                             <target>
                                 <!-- download the zip -->
-                                <get src="${derby.download.url}" 
-                                  dest="target/derby-${project.version}.zip" 
-                                  verbose="false" usetimestamp="true" />
+                                <get src="${derby.download.url}" dest="target/derby-${project.version}.zip" verbose="false" usetimestamp="true" />
                             </target>
                          </configuration>
                       </execution>
