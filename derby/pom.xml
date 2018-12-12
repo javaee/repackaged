@@ -53,11 +53,11 @@
     <groupId>org.glassfish.external</groupId>
     <artifactId>derby</artifactId>
     <name>Apache Derby repackaged</name>
-    <version>10.13.1.2-SNAPSHOT</version>
+    <version>10.14.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <derby.version>10.13.1.1</derby.version>
+        <derby.version>10.14.2.0</derby.version>
         <derby.download.url>http://www-eu.apache.org/dist/db/derby/db-derby-${derby.version}/db-derby-${derby.version}-bin.zip</derby.download.url>
     </properties>
 
